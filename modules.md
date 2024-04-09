@@ -89,5 +89,3 @@ module "local_dev" {
   source = "../local-modules/my-module"
 }
 ```
-
-Example 3: Basic Output Variable
