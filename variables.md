@@ -69,3 +69,29 @@ resource "aws_instance" "advanced_example" {
 }
 ```
 This setup highlights the power of local variables in managing conditional logic and complex data structures, simplifying your Terraform configurations significantly.
+
+- YAML decode and read in Terraform local variable:-
+
+```hcl
+# conditional.yaml
+env: "production"
+tags:
+  production: "true"
+  development: "false"
+```
+
+To apply this logic within Terraform:
+```hcl
+locals {
+  env_config = yamldecode(file("${path.module}/conditional.yaml"))
+}
+
+resource "some_resource" "example" {
+  tags = {
+    Environment = local.env_config.env
+    Production = local.env_config.tags.production
+    Development = local.env_config.tags.development
+  }
+}
+```
+This setup allows you to maintain environmental configurations in YAML, making it easier to manage and understand.
