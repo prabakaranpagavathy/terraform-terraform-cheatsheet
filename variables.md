@@ -52,6 +52,7 @@ resource "aws_instance" "example" {
 }
 ```
 - Local Variables
+  
 For more advanced Terraform users, local variables can be instrumental in handling complex data structures and conditionals. Consider this scenario where you need to conditionally include certain resource properties.
 ```hcl
 locals {
